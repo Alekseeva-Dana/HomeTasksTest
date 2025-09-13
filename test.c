@@ -2,6 +2,6 @@
 int main (void)
 {
 	printf ("Hello, World!\n");
-	gethar();
+	gethar;
 	return 0;
 }
