@@ -23,7 +23,7 @@ int main() {
 	unsigned int x, y;
 	int p, n;
 	printf("Введите x, y, p, n: ");
-	scanf("%x %x %d %d", &x, &y, &p, &n);
+	scanf("%u %u %d %d", &x, &y, &p, &n);
 	
 	unsigned int res = replace_bits(x, y, p, n);
 	printf("Результат: %u", res);
