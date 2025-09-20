@@ -7,10 +7,10 @@ int main() {
 	printf("Введите беззнаковое целое число: ");
 	scanf("%u", &packed);
 
-	c1 = (packed >> 24) & 0xFF;
-	c2 = (packed >> 16) & 0xFF;
-	c3 = (packed >> 8) & 0xFF;
-	c4 = packed & 0xFF;
+	c1 = (packed >> 24);
+	c2 = (packed >> 16);
+	c3 = (packed >> 8);
+	c4 = packed;
 
 	printf("Распакованные символы: '%c' '%c' '%c' '%c'\n", c1, c2, c3, c4);
 
