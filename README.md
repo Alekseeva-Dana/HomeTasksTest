@@ -7,7 +7,7 @@
 <h2 align="center">Описание <a href="https://github.com/Alekseeva-Dana/tasks/tree/main/tasks/task2" target="_blank">Task2</h2>
 <h3 align="center">Модуль <a href="https://github.com/Alekseeva-Dana/tasks/blob/main/tasks/task2/task21.c" tarhet="_blank">Task 2.1</h3>
 <b>Описание переменных</b>
-<p>xi - текущее значение xi, xi_prev - предыдыдущее значение xi (в цикле вычисления корня)</p>
+<p>xi - текущее значение x, xi_prev - предыдыдущее значение x (в цикле вычисления корня)</p>
 <pre><code>double xi = 1.0, xi_prev;</code></pre>
 <p>x - введенное число, корень которого нужно вычислить, eps - заданная точность поиска корня</p>
 <pre><code> double x, eps;</code></pre>
