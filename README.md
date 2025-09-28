@@ -31,4 +31,15 @@
 <p>Пока не достигнут конец ввода, на вход подаются вещественные числа, из которых методом Ньютона вычисляется корень с заданной точностью</p>
 <br>
 </br>
-<h3 align="center">Модуль <a href="https://github.com/Alekseeva-Dana/tasks/blob/main/tasks/task2/task21.c" tarhet="_blank">Task 2.2</h3>
+<h3 align="center">Модуль <a href="https://github.com/Alekseeva-Dana/tasks/blob/main/tasks/task2/task21.c" target="_blank">Task 2.2</h3>
+Task 2.2 включает в себя три пункта: <a href="https://github.com/Alekseeva-Dana/tasks/blob/main/tasks/task2/task221.c" target="_blank">Task 2.2.1, <a href="https://github.com/Alekseeva-Dana/tasks/blob/main/tasks/task2/task222.c" target="_blank">Task 2.2.2, <a href="https://github.com/Alekseeva-Dana/tasks/blob/main/tasks/task2/task223.c" target="_blank">Task 2.2.3
+<h3 align="center">Описание для Task 2.2.3</h3>
+<b>Описание переменных</b>
+<p>n - степень многочлена, x - точка, в которой нужно вычислить значение, poly - переменная, в которой накапливается значение многочлена, deriv - переменная, в которой накапливается значение производной многочлена, integral - переменная, в которой накапливается значение определенного интеграла от многочлена с пределами интегрирования от 0 до x, a - значения коэффициентов многочлена (an, an-1, ..., a0)</p>
+<pre><code>
+        int n;
+        double x;
+        double poly = 0.0; 
+        double deriv = 0.0; 
+        double integral = 0.0;
+        double a;</code></pre>
