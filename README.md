@@ -29,3 +29,6 @@
 }</code></pre>
 <b>Описание действия программы</b>
 <p>Пока не достигнут конец ввода, на вход подаются вещественные числа, из которых методом Ньютона вычисляется корень с заданной точностью</p>
+<br>
+</br>
+<h3 align="center">Модуль <a href="https://github.com/Alekseeva-Dana/tasks/blob/main/tasks/task2/task21.c" tarhet="_blank">Task 2.2</h3>
