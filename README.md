@@ -1,7 +1,7 @@
 <h1 align="center">Документация по Task'ам</a>
 <br>
 </br>        
-<img width="300" height="450" alt="image" src="https://github.com/user-attachments/assets/b3e952da-4607-4153-b0d4-010cf65d2625" />
+<!--<img width="300" height="450" alt="image" src="https://github.com/user-attachments/assets/b3e952da-4607-4153-b0d4-010cf65d2625" />-->
 <br>
 </br>
 <h2 align="center">Описание <a href="https://github.com/Alekseeva-Dana/tasks/tree/main/tasks/task2" target="_blank">Task2</h2>
@@ -110,3 +110,83 @@ power - переменная, на которую нужно будет домн
 <b>Описание действия программы</b>
 <br>
 Программа получает на вход последовательность символов, которую пребразует в вещественное число типа double
+<br>
+</br>
+<h3 align="center">Модуль <a href="https://github.com/Alekseeva-Dana/tasks/blob/main/tasks/task2/task27.c" target="_blank">Task 2.7</h3>
+<b>Описание переменных</b>
+<br>
+jmp_buf begin - точка начала диалога с пользователем, char curlex - текущая обрабатываемая лексема
+<pre><code>jmp_buf begin; /*точка начала диалога с пользователем*/
+char curlex; /*текущая лексема*/</code></pre>
+<b>Описание функций</b>
+void getlex(void) - выделяет из входного потока очередную лексему
+<pre><code>void getlex(void) {
+        while ((curlex = getchar()) == ' ');
+}</code></pre>
+void error(void) - сообщает об ошибке в выражении
+<pre><code>void error(void) {
+        printf("\nОШИБКА!\n");
+        while(getchar() != '\n');longjmp(begin, 1);
+}
+</code></pre>
+int expr(void) - распознает выражение и вычисляет его значение
+<pre><code>int expr(void) {
+        int e = term();
+        while (curlex == '+' || curlex == '-') {
+                char op = curlex;
+                getlex();
+                if (op == '+')
+                        e += term();
+                else
+                        e -= term();
+        }
+        return e;
+}</code></pre>
+int term(void) - распознает слагаемое и вычисляет его значение
+<pre><code>int term(void) {
+        int t = factor();
+        while (curlex == '*' || curlex == '/') {
+                char op = curlex;
+                getlex();
+                int f = factor();
+                if (op == '*')
+                        t *= f;
+                else {
+                        if (f == 0) error(); /*деление на ноль*/
+                        t /= f;
+                }
+        }
+        return t;
+}</code></pre>
+int factor(void) - распознает множитель и вычисляет его значение
+<pre><code>int factor(void) {
+        int f = power();
+        while (curlex == '^') {
+                getlex();
+                int p = factor();
+                if (p < 0) error(); /*отрицательная степень*/
+                int result = 1;
+                for (int i = 0; i < p; i++)
+                        result *= f;
+                f = result;
+        }
+        return f;
+}</code></pre>
+int power(void) - распознает степень и вычисляет ее значение
+<pre><code>int power(void) {
+        int p;
+        switch(curlex) {
+                case '0': case '1': case '2': case '3': case '4': case '5': case '6': case '7': case '8': case '9':
+                        p = curlex - '0';
+                        break;
+                case '(':
+                        getlex();
+                        p = expr();
+                        if (curlex != ')') error();
+                        break;
+                default:
+                        error();
+        }
+        getlex();
+        return p;
+}</code></pre>
