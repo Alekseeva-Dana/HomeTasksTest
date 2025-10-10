@@ -24,7 +24,7 @@ int fib_recursive(int n) {
 
 int main() {
 	int i;
-	printf("Введите номера членов последовательности Фибоначчи:\n");
+	/*printf("Введите номера членов последовательности Фибоначчи:\n");*/
 	while (scanf("%d", &i) == 1) {
 		printf("%d\n", fib_iterative(i));
 		printf("%d\n", fib_recursive(i));
