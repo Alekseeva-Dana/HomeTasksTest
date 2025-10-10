@@ -20,10 +20,10 @@ double calculate_sqrt(double x, double eps) {
 int main() {
 	double x, eps;
 	
-	printf("Введите точность вычислений: ");
+	/*printf("Введите точность вычислений: ");*/
 	scanf("%lf", &eps);
 
-	printf("Введите вещественные числа (для завершения - Ctrl+D): \n");
+	/*printf("Введите вещественные числа (для завершения - Ctrl+D): \n");*/
 
 	while(scanf("%lf", &x) != EOF) {
 		if (calculate_sqrt(x,eps) == -1) {
