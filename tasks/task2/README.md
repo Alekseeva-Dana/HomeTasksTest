@@ -109,6 +109,7 @@ power - переменная, на которую нужно будет домн
 </br>
 <h3 align="center">Модуль <a href="https://github.com/Alekseeva-Dana/tasks/blob/main/tasks/task2/task25.c" target="_blank">Task 2.5</h3>
 <b>Описание функций</b>
+<br>
 WordList* create_node(const char *word) - создание нового узла
 выделяем память под новый узел:
 <pre><code> WordList *new_node = (WordList*)malloc(sizeof(WordList));</code></pre>
@@ -193,6 +194,7 @@ WordList* string_to_word_list(const char *str) - преобразование с
 <pre><code> append_word(&head, word);
                 free(word);</code></pre>
 <b>Описание действия программы</b>
+<br>
 программа стоит из введенной строки список слов, после чего из списка удаляются все слова, совпадающие с последним, кроме самого последнего. преобразованный список выводится на экран
 <br>
 </br>
