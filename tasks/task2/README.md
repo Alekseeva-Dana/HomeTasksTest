@@ -107,6 +107,71 @@ power - переменная, на которую нужно будет домн
 Программа получает на вход последовательность символов, которую пребразует в вещественное число типа double
 <br>
 </br>
+<h3 align="center">Модуль <a href="https://github.com/Alekseeva-Dana/tasks/blob/main/tasks/task2/task26.c" target="_blank">Task 2.6</h3>
+<b>Описание функций</b>
+<br>
+tNode* createNode(elemtype elem) - функция для создания нового узла в дереве:
+выделение памяти под новый узел: 
+<pre><code> tNode* newNode = (tNode*)malloc(sizeof(tNode));</code></pre>
+в поле элемента нового узла записываем новое значение, а левого и правого потомков обнуляем
+<pre><code> newNode->elem = elem;
+        newNode->left = NULL;
+        newNode->right = NULL;</code></pre>
+tNode* insert(tNode* root, elemtype elem) - добавление нового элемента в дерево
+если достигли пустого места, создаем новый узел
+<pre><code> if (root == NULL) {
+                return createNode(elem);
+        }</code></pre>
+иначе рекурсивно спускаемся в левое или правое поддерево в зависимости от того, меньше или больше вставляемый элемент текущего элемента
+<pre><code> if (elem < root->elem) {
+                root->left = insert(root->left, elem);
+        } else if (elem > root->elem) {
+                root->right = insert(root->right, elem);
+        }</code></pre>
+tNode* findMin(tNode* root) - поиск минимального элемента в дереве:
+спускаемся в самую левую часть дерева (так как наше дерево - дерево поиска)
+tNode* delete(tNode* root, elemtype elem) - удаление элемента из дерева
+узел не найден:
+<pre><code> if (root == NULL) {
+                return NULL;
+        }</code></pre>
+рекурсивно ищем узел для удаления 
+<pre><code> if (elem < root->elem) {
+                root->left = delete(root->left, elem);
+        } else if (elem > root->elem) {
+                root->right = delete(root->right, elem);
+        } </code></pre>
+когда найден узел для удаления:
+если левое поддерево - пустое, то копируем правое поддерево в текущий узел
+<pre><code>  if (root->left == NULL) {
+                        tNode* tmp = root->right;
+                        free(root);
+                        return tmp;
+                } </code></pre>
+аналогично, если правое поддерево - пустое
+<pre><code> else if (root->right == NULL) {
+                        tNode* tmp = root->left;
+                        free(root);
+                        return tmp;
+                }</code></pre>
+для общего случая находим минимальный элемент в правом поддереве и копируем его на место элемента, который нужно удалить, после чего очищаем правый минимальный элемент (можно было вместо минимального правого копировать максимальный левый)
+int search(tNode* root, elemtype elem) - поиск элемента в дереве
+элемент не найден:
+<pre><code> if (root == NULL) {
+                return 0;
+        }</code></pre>
+если элемент найден - возвращаем истину, рекурсивный спуск в левое или правое поддерево
+void freeTree(tNode* root) - освобождение памяти дерева
+<pre><code> if (root != NULL) {
+                freeTree(root->left);
+                freeTree(root->right);
+                free(root);
+        }</code></pre>
+<b>Описание действия программы</b>
+<br>
+Программа создает пустое дерево поиска. Если вводится +число, то в дерево добавляется это число, если вводится -число, то из дерева удаляется это число, если вводится ?число, то проверяется, присутствует ли это число в дереве: если да, то выводится число и "yes", иначе - число и "no"
+<br>
+</br>
 <h3 align="center">Модуль <a href="https://github.com/Alekseeva-Dana/tasks/blob/main/tasks/task2/task27.c" target="_blank">Task 2.7</h3>
 <b>Описание переменных</b>
 <br>
