@@ -107,6 +107,97 @@ power - переменная, на которую нужно будет домн
 Программа получает на вход последовательность символов, которую пребразует в вещественное число типа double
 <br>
 </br>
+<h3 align="center">Модуль <a href="https://github.com/Alekseeva-Dana/tasks/blob/main/tasks/task2/task25.c" target="_blank">Task 2.5</h3>
+<b>Описание функций</b>
+<br>
+WordList* create_node(const char *word) - создание нового узла
+выделяем память под новый узел:
+<pre><code> WordList *new_node = (WordList*)malloc(sizeof(WordList));</code></pre>
+если не получилось выделить память - возвращаем NULL
+выделяем память под слово и одно место для символа '\0'
+<pre><code> new_node->word = (char*)malloc(strlen(word) + 1);</code></pre>
+копируем слово в выделенную память и придаем указателю на следующий узел значение NULL
+<pre><code> strcpy(new_node->word, word);
+        new_node->next = NULL;</code></pre>
+void append_word(WordList **head, const char *word) - добавление слова в конец списка
+создаем новый узел:
+<pre><code> WordList *new_node = create_node(word);</code></pre>
+если список пустой, то новый узел становится головой списка
+<pre><code> if (*head == NULL) {
+                *head = new_node;
+        } </code></pre>
+иначе доходим до последнего узла и добавляем туда новый узел
+char* get_last_word(WordList *head) - получение последнего слова
+если список пустой, возвращаем NULL
+иначе идем до последнего узла и возвращаем слово последнего узла
+<pre><code> WordList *current = head;
+        while (current->next != NULL) {
+                current = current->next;
+        }
+        return current->word;</code></pre>
+void remove_matching_words(WordList **head) - удаление слов, совпадающих с последним
+если список пустой - выходим
+<pre><code> if (*head == NULL) {
+                return;
+        }</code></pre>
+получаем последнее слово
+<pre><code>char *last_word = get_last_word(*head);</code></pre>
+далее, пока не конец списка:
+если слово совпадает с последним и это не последний узел, помечаем узел для удаления:
+<pre><code> to_delete = current;</code></pre>
+если удаляем голову списка, то голова становится следующим узлом и переходим к новой голове:
+<pre><code> *head = current->next;
+                                current = *head;</code></pre>
+иначе пропускаем удаляемый узел и переходим к следующему
+<pre><code> prev->next = current->next;
+                                current = current->next;</code></pre>
+освобождаем память слова и память узла
+<pre><code> free(to_delete->word);
+                        free(to_delete);</code></pre>
+если слово не совпало с последним, переходим к новому узлу
+<pre><code> prev = current;
+                        current = current->next;</code></pre>
+void print_list(WordList *head) - печать списка
+начинаем с головы и, пока не конец списка, печатаем слово. если есть следующее слово, то печатаем пробел и переходим к следующему 
+<pre><code> WordList *current = head;
+        while (current != NULL) {
+                printf("%s", current->word);
+                if (current->next != NULL) {
+                        printf(" ");
+                }
+                current = current->next;
+        }
+        printf("\n");</code></pre>
+void free_list(WordList *head) - осовбождение памяти списка
+WordList* string_to_word_list(const char *str) - преобразование строки в список слов
+пока не конец строки, пропускаем пробелы, и если конец строки - выходим из цикла
+<pre><code> while (*p != '\0') {
+                while (*p != '\0' && isspace(*p)) {
+                        p++;
+                }
+                if (*p == '\0') {
+                        break;
+                }</code></pre>
+запоминаем начало слова и ищем конец слова
+<pre><code>const char *word_start = p;
+                while (*p != '\0' && !isspace(*p)) {
+                        p++;
+                }</code></pre>
+вычисляем длину слова
+<pre><code> size_t word_len = p - word_start;</code></pre>
+выделяем память под слово
+<pre><code> char *word = (char*)malloc(word_len + 1);</code></pre>
+копируем слово и добавляем нулевой символ
+<pre><code>strncpy(word, word_start, word_len);
+                word[word_len] = '\0';</code></pre>
+добавляем слово в список и освобождаем временную память
+<pre><code> append_word(&head, word);
+                free(word);</code></pre>
+<b>Описание действия программы</b>
+<br>
+программа стоит из введенной строки список слов, после чего из списка удаляются все слова, совпадающие с последним, кроме самого последнего. преобразованный список выводится на экран
+<br>
+</br>
 <h3 align="center">Модуль <a href="https://github.com/Alekseeva-Dana/tasks/blob/main/tasks/task2/task26.c" target="_blank">Task 2.6</h3>
 <b>Описание функций</b>
 <br>
